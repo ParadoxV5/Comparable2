@@ -1,5 +1,8 @@
-package java.lang;
+package xyz.paradoxv5;
 import java.util.Comparator;
+
+import java.lang.Comparable;
+import java.lang.Object;
 
 /**
 A {@link Comparable}-extending interface that adds additional {@code default} methods to reduce coding repetition.
