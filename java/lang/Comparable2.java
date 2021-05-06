@@ -2,7 +2,7 @@ package java.lang;
 import java.util.Comparator;
 
 /**
-A {@link Comparable}-{@code extend}ing interface that adds additional {@code default} methods.
+A {@link Comparable}-extending interface that adds additional {@code default} methods to reduce coding repetition.
 
 @param <T> <br>
 According to {@link Comparable}, this is implicitly expected to be
@@ -14,7 +14,7 @@ match the requirements laid out by Comparable.
 
 @implNote
 This extension is written with
-<a href=https://ruby-doc.org/core/Comparable.html>Ruby’s Comparable module</a>
+<a href=https://ruby-doc.org/core/Comparable.html>Ruby’s {@code Comparable} module</a>
 as the main reference.
 
 @author ParadoxV5
