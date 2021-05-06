@@ -31,29 +31,28 @@ public interface Comparable2<T extends Comparable<T>> extends Comparable<T> {
 
 /** @return Whether {@link #compareTo(T)} returned negative or not after calling.
   @param other The {@link Comparable2 T} to compare against
-  @see #isGreater(T)
-  @see #isLessEqual(T)
+  @see #isGreaterThan(T)
+  @see #isLessThanOrEqualTo(T)
 */
-public default boolean isLess(T other)         { return compareTo(other) <  0; }
+public default boolean isLessThan(T other)             { return compareTo(other) <  0; }
 /** @return Whether {@link #compareTo(T)} returned positive or not after calling.
   @param other The {@link Comparable2 T} to compare against
-  @see #isLess(T)
-  @see #isGreaterEqual(T)
+  @see #isLessThan(T)
+  @see #isGreaterThanOrEqualTo(T)
 */
-public default boolean isGreater(T other)      { return compareTo(other) >  0; }
+public default boolean isGreaterThan(T other)          { return compareTo(other) >  0; }
 /** @return Whether {@link #compareTo(T)} returned non-positive or not after calling.
   @param other The {@link Comparable2 T} to compare against
-  @see #isGreaterEqual(T)
-  @see #isLess(T)
+  @see #isGreaterThanOrEqualTo(T)
+  @see #isLessThan(T)
 */
-public default boolean isLessEqual(T other)    { return compareTo(other) <= 0; }
+public default boolean isLessThanOrEqualTo(T other)    { return compareTo(other) <= 0; }
 /** @return Whether {@link #compareTo(T)} returned non-negative or not after calling.
   @param other The {@link Comparable2 T} to compare against
-  @see #isLessEqual(T)
-  @see #isGreater(T)
+  @see #isLessThanOrEqualTo(T)
+  @see #isGreaterThan(T)
 */
-public default boolean isGreaterEqual(T other) { return compareTo(other) >= 0; }
-
+public default boolean isGreaterThanOrEqualTo(T other) { return compareTo(other) >= 0; }
 
 /** @return Whether {@link #compareTo(T)} returned {@code 0} or not after calling.
   
@@ -64,9 +63,9 @@ public default boolean isGreaterEqual(T other) { return compareTo(other) >= 0; }
   See {@link #is(T)} for a pre-written method that recognizes all three.
   
   @param other The {@link Comparable2 T} to compare against
-  @see #isNotEqual(T)
+  @see #isNotEqualTo(T)
 */
-public default boolean isEqual(T other) { return compareTo(other) == 0; }
+public default boolean isEqualTo(T other) { return compareTo(other) == 0; }
 /** @return Whether {@link #compareTo(T)} returned non-{@code 0} or not after calling.
   
   @apiNote
@@ -76,13 +75,13 @@ public default boolean isEqual(T other) { return compareTo(other) == 0; }
   See {@link #isNot(T)} for a pre-written method that recognizes all three.
   
   @param other The {@link Comparable2 T} to compare against
-  @see #isEqual(T)
+  @see #isEqualTo(T)
 */
-public default boolean isNotEqual(T other) { return compareTo(other) != 0; }
+public default boolean isNotEqualTo(T other) { return compareTo(other) != 0; }
 /** Calls the following in this given order:<ol>
   <li>{@code ==}
   <li>{@link #equals(Object)}
-  <li>{@link #isEqual(T)}
+  <li>{@link #isEqualTo(T)}
   </ol>
   
   @return
@@ -92,11 +91,11 @@ public default boolean isNotEqual(T other) { return compareTo(other) != 0; }
   @param other The {@link Comparable2 T} to compare against
   @see #isNot(T)
 */
-public default boolean is(T other) { return this == other || equals(other) || isEqual(other); }
+public default boolean is(T other) { return this == other || equals(other) || isEqualTo(other); }
 /** Calls the following in this given order:<ol>
   <li>{@code !=}
   <li>{@code !} {@link #equals(Object)}
-  <li>{@link #isNotEqual(T)}
+  <li>{@link #isNotEqualTo(T)}
   </ol>
   
   @return
@@ -106,10 +105,10 @@ public default boolean is(T other) { return this == other || equals(other) || is
   @param other The {@link Comparable2 T} to compare against
   @see #is(T)
 */
-public default boolean isNot(T other) { return this != other && !equals(other) && isNotEqual(other); }
+public default boolean isNot(T other) { return this != other && !equals(other) && isNotEqualTo(other); }
 
 /** @return
-  {@code true} if {@link #isLess(T) isLess(min)} or {@link #isGreater(T) isGreater(max)},
+  {@code true} if {@link #isLessThan(T) isLess(min)} or {@link #isGreaterThan(T) isGreater(max)},
   {@code false} otherwise.
   
   @param min The minimum {@link Comparable2 T} bound to compare against
@@ -117,9 +116,9 @@ public default boolean isNot(T other) { return this != other && !equals(other) &
   
   @see #isBetween(T, T)
 */
-public default boolean isNotBetween(T min, T max) { return isLess(min) || isGreater(max); }
+public default boolean isNotBetween(T min, T max) { return isLessThan(min) || isGreaterThan(max); }
 /** @return
-  {@code true} if {@link #isGreaterEqual(T) isGreaterEqual(min)} or {@link #isLessEqual(T) isLessEqual(max)},
+  {@code true} if {@link #isGreaterThanOrEqualTo(T) isGreaterEqual(min)} or {@link #isLessThanOrEqualTo(T) isLessEqual(max)},
   {@code false} otherwise.
   
   @param min The minimum {@link Comparable2 T} bound to compare against
@@ -127,11 +126,11 @@ public default boolean isNotBetween(T min, T max) { return isLess(min) || isGrea
   
   @see #isNotBetween(T, T)
 */
-public default boolean isBetween(T min, T max) { return isGreaterEqual(min) && isLessEqual(max); }
+public default boolean isBetween(T min, T max) { return isGreaterThanOrEqualTo(min) && isLessThanOrEqualTo(max); }
 
 /** @return
-  {@code min} if {@link #isLess(T) isLess(min)},
-  {@code max} if {@link #isGreater(T) isGreater(max)},
+  {@code min} if {@link #isLessThan(T) isLess(min)},
+  {@code max} if {@link #isGreaterThan(T) isGreater(max)},
   {@code this} otherwise.
   
   @param min The minimum {@link Comparable2 T} bound to compare against
@@ -141,8 +140,8 @@ public default boolean isBetween(T min, T max) { return isGreaterEqual(min) && i
   @see #isBetween(T, T)
 */
 public default Comparable<T> clamp(T min, T max) {
-  if(isLess(min)) return min;
-  if(isGreater(max)) return max;
+  if(isLessThan(min)) return min;
+  if(isGreaterThan(max)) return max;
   return this;
 }
 
@@ -156,7 +155,7 @@ public default Comparable<T> clamp(T min, T max) {
   {@link Comparator#equals(Object) defaultComparator().equals(defaultComparator())}
   (which isn’t {@link Override implemented}) </strong> evaluates to <u>{@code false}</u>.
 */
-public static <T extends Comparable<T>> Comparator<T> defaultComparator() { return new Comparator<T>() {
+public static <T extends Comparable<T>> Comparator<T> generateComparator() { return new Comparator<>() {
   @Override public int compare(T o1, T o2) { return o1.compareTo(o2); }
 }; }
 
