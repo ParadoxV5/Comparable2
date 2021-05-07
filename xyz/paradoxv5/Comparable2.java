@@ -28,6 +28,7 @@ public interface Comparable2<T extends Comparable2<T>> extends java.lang.Compara
 /**
   @param other The {@link Comparable2 T} to compare against
   @return Whether {@link #compareTo(T)} returned negative or not after calling.
+  
   @see #isGreaterThan(T)
   @see #isLessThanOrEqualTo(T)
 */
@@ -35,6 +36,7 @@ public default boolean isLessThan(T other) { return compareTo(other) <  0; }
 /**
   @param other The {@link Comparable2 T} to compare against
   @return Whether {@link #compareTo(T)} returned positive or not after calling.
+  
   @see #isLessThan(T)
   @see #isGreaterThanOrEqualTo(T)
 */
@@ -42,6 +44,7 @@ public default boolean isGreaterThan(T other) { return compareTo(other) >  0; }
 /**
   @param other The {@link Comparable2 T} to compare against
   @return Whether {@link #compareTo(T)} returned <em>non-</em>positive or not after calling.
+  
   @see #isGreaterThanOrEqualTo(T)
   @see #isLessThan(T)
 */
@@ -49,6 +52,7 @@ public default boolean isLessThanOrEqualTo(T other) { return compareTo(other) <=
 /**
   @param other The {@link Comparable2 T} to compare against
   @return Whether {@link #compareTo(T)} returned <em>non-</em>negative or not after calling.
+  
   @see #isLessThanOrEqualTo(T)
   @see #isGreaterThan(T)
 */
@@ -57,23 +61,23 @@ public default boolean isGreaterThanOrEqualTo(T other) { return compareTo(other)
 /**
   @param other The {@link Comparable2 T} to compare against
   @return Whether {@link #compareTo(T)} returned {@code 0} or not after calling.
-  @see #isNotEqualTo(T)
-  
   @apiNote
     This only compares with {@code compareTo(T)}, without {@code ==} nor {@link #equals(Object)}.
     <p>
     See {@link #is(T)} for a {@code default} method that uses all three.
+  
+  @see #isNotEqualTo(T)
 */
 public default boolean isEqualTo(T other) { return compareTo(other) == 0; }
 /**
   @param other The {@link Comparable2 T} to compare against
   @return Whether {@link #compareTo(T)} returned <em>non-</em>{@code 0} or not after calling.
-  @see #isEqualTo(T)
-  
   @apiNote
     This only compares with {@code compareTo(T)}, without {@code !=} nor {@code !}{@link #equals(Object)}.
     <p>
     See {@link #isNot(T)} for a {@code default} method that uses all three.
+  
+  @see #isEqualTo(T)
 */
 public default boolean isNotEqualTo(T other) { return compareTo(other) != 0; }
 /**
@@ -86,6 +90,7 @@ public default boolean isNotEqualTo(T other) { return compareTo(other) != 0; }
   @return
     {@code true} if any of the above gives {@code true},
     {@code false} if all of the above gives {@code false}
+  
   @see #isNot(T)
 */
 public default boolean is(T other) { return this == other || equals(other) || isEqualTo(other); }
@@ -100,6 +105,7 @@ public default boolean is(T other) { return this == other || equals(other) || is
   @return
     {@code true} if all of the above gives {@code true},
     {@code false} if any of the above gives {@code false}
+  
   @see #is(T)
 */
 public default boolean isNot(T other) { return this != other && !equals(other) && isNotEqualTo(other); }
@@ -123,17 +129,18 @@ public default boolean isNotBetween(T min, T max) { return isLessThan(min) || is
       that is, both {@link #isGreaterThanOrEqualTo(T) isGreaterThanOrEqualTo(min)}
       and {@link #isLessThanOrEqualTo(T) isLessThanOrEqualTo(max)};
     {@code false} otherwise.
+  
   @see #isNotBetween(T, T)
 */
 public default boolean isBetween(T min, T max) { return isGreaterThanOrEqualTo(min) && isLessThanOrEqualTo(max); }
 
-/** @return
-  {@code min} if {@link #isLessThan(T) isLess(min)},
-  {@code max} if {@link #isGreaterThan(T) isGreater(max)},
-  {@code this} otherwise.
-  
+/**
   @param min The minimum {@link Comparable2 T} bound to compare against
   @param max The maximum {@link Comparable2 T} bound to compare against
+  @return
+    {@code min} if {@link #isLessThan(T) isLess(min)},
+    {@code max} if {@link #isGreaterThan(T) isGreater(max)},
+    {@code this} otherwise.
   
   @see #isNotBetween(T, T)
   @see #isBetween(T, T)
