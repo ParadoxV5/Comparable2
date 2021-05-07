@@ -1,7 +1,0 @@
-''(July 1<sup>st</sup>, 2020)'' Oh, Java, I can’t believe that we '''still''' have to write <code>.compareTo < 0</code> even with [https://download.java.net/java/early_access/jdk15/docs/api/java.base/java/lang/Comparable.html the latest beta]!
-----
-= Comparable2 =
-'''<code>java.lang.Comparable2</code>''' is a [https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/Comparable.html <code>Comparable</code>]-<code>extend</code>ing interface that adds additional <code>default</code> methods.
-
-This extension is written with [https://ruby-doc.org/core/Comparable.html Ruby’s Comparable module]
-as the main reference.
