@@ -1,32 +1,28 @@
 package xyz.paradoxv5;
 import java.util.Comparator;
 
-import java.lang.Comparable;
-import java.lang.Object;
-
 /**
   A {@link Comparable}-extending interface that adds
   additional {@code default} methods to reduce coding repetition.
   
-  @param <T> <br>
-  According to {@link Comparable}, this is implicitly expected to be
-  the type which implementing classes can {@link #compareTo(T)},
-  which is almost always simply this same type.
-  <p>
-  Unlike {@link Comparable}, Comparator2 requires {@code T} to implement {@code Comparable<T>} to
-  match this expectation of {@code Comparable}.
-  
+  @param <T>
+    According to {@link Comparable}, this is implicitly expected to be
+    the type which implementing classes can {@link #compareTo(T)},
+    which is almost always simply this same type.
+    <p>
+    Unlike {@link Comparable}, Comparator2 requires {@code T} to implement {@code Comparable2<T>},
+    both to match this expectation for one and for {@link #clamp(T, T)}’s typing.
   @implNote
-  This extension is written with
-  <a href=https://ruby-doc.org/core/Comparable.html>Ruby’s {@code Comparable} module</a>
-  as the main reference.
+    This extension is written with
+    <a href=https://ruby-doc.org/core/Comparable.html>Ruby’s {@code Comparable} module</a>
+    as the main reference.
   
   @author ParadoxV5
-  <p>
-  Released under the <b>MIT License</b>.
-  <a href=https://github.com/ParadoxV5/Comparable2>[View on GitHub]</a>
+    <p>
+    Released under the <b>MIT License</b>.
+    <a href=https://github.com/ParadoxV5/Comparable2>[View on GitHub]</a>
 */
-public interface Comparable2<T extends Comparable<T>> extends Comparable<T> {
+public interface Comparable2<T extends Comparable2<T>> extends java.lang.Comparable<T> {
 ///
 
 /**
@@ -142,7 +138,7 @@ public default boolean isBetween(T min, T max) { return isGreaterThanOrEqualTo(m
   @see #isNotBetween(T, T)
   @see #isBetween(T, T)
 */
-public default Comparable<T> clamp(T min, T max) {
+public default Comparable2<T> clamp(T min, T max) {
   if(isLessThan(min)) return min;
   if(isGreaterThan(max)) return max;
   return this;
@@ -158,7 +154,7 @@ public default Comparable<T> clamp(T min, T max) {
     multiple calls will generate multiple new {@code Comparator}s which will fail <em>both</em>
     {@code ==} <strong>and {@link Comparator#equals(Object)}</strong> tests.
 */
-public static <T extends Comparable<T>> Comparator<T> generateComparator() { return new Comparator<>() {
+public static <T extends Comparable2<T>> Comparator<T> generateComparator() { return new Comparator<>() {
   @Override public int compare(T o1, T o2) { return o1.compareTo(o2); }
 }; }
 
